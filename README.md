@@ -469,31 +469,18 @@ async def root():
 
 Rachel HR Interview Bot leverages a powerful combination of cutting-edge technologies:
 
-- **Python**: The core programming language used for development.
-- **Gradio**: For creating the user-friendly web interface.
-- **PyTorch**: Utilized for GPU acceleration and deep learning capabilities.
-- **Llama-cpp**: Implements the advanced language model for question generation and answer evaluation.
-- **spaCy**: Provides natural language processing capabilities for text analysis.
-- **PyTextRank**: Used for keyword extraction and text summarization.
-- **scikit-learn**: Implements TF-IDF vectorization and cosine similarity for answer comparison.
-- **PyPDF2**: Enables PDF parsing for resume analysis.
+### NVIDIA AI Technologies
+- **NVIDIA NeMo Guardrails**: For content safety and response filtering
+- **TensorRT-LLM**: Hardware-accelerated inference optimization
+- **NVIDIA NIM (NVIDIA Inference Microservices)**: Scalable API services
+- **NVIDIA LLama 3.1 Nemotron 70B**: Core language model for question generation and evaluation
 
-### Technical Architecture
+### Additional Technologies
+- **SpaCy & PyTextRank**: Natural Language Processing
+- **scikit-learn**: Machine Learning utilities
+- **OpenAI API**: Integration with NVIDIA's API endpoint
+- **PyPDF2**: PDF processing for resume analysis
 
-Rachel HR Interview Bot is built on a robust and scalable architecture, leveraging cutting-edge technologies:
-
-```
-+-------------------+     +------------------+     +------------------+
-|   User Interface  |     |  Core Logic      |     |  AI Engine       |
-| (Gradio Frontend) | <-> | (Python Backend) | <-> | (Llama 3.2 Model)|
-+-------------------+     +------------------+     +------------------+
-         ^                        ^                         ^
-         |                        |                         |
-         v                        v                         v
-+-------------------+     +------------------+     +------------------+
-|   PDF Processor   |     | NLP Pipeline     |     |  GPU Accelerator |
-|   (PyPDF2)        |     | (spaCy, TextRank)|     |  (CUDA)          |
-+-------------------+     +------------------+     +------------------+
 ```
 
 ## 4. Installation
