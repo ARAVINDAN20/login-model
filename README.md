@@ -320,23 +320,30 @@ Rachel HR Interview Bot offers a wide range of features designed to enhance the 
 
 ### Method 1: Direct Installation
 
+### Method 1: Direct Installation
+
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/rachel-hr-bot.git
-cd rachel-hr-bot
+git clone https://github.com/ARAVINDAN20/rachael-ai.git
+cd rachael-ai
 
 # Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install nemo-guardrails tensorrt-llm nvidia-nim gradio spacy pytextrank scikit-learn openai
+python -m spacy download en_core_web_sm
 
 # Install NVIDIA components
 pip install nvidia-pytriton
 pip install nvidia-tensorrt
 pip install nemo-toolkit[all]
 pip install llama-index
+
+#TO RUN THIS DEMO RACHEL IN GRADIO:
+python Rachel.py
+#THE MAIN IS OpenWebUI Follow the steps below 
 ```
 
 ### Method 2: Docker Installation
@@ -435,7 +442,7 @@ async def root():
 
 1. **Start the Application**
    ```bash
-   python run.py
+   python Rachel.py
    ```
 
 2. **Access the Interface**
