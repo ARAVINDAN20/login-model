@@ -237,7 +237,7 @@ Built with ❤️ by [Your Name] for the NVIDIA and LlamaIndex Developer Contest
 
 
 # Rachel HR Interview Bot
-<img src="https://github.com/user-attachments/assets/ec395b1f-6acd-4923-8e4c-d67a4b48271d" alt="Rachel HR Interview Bot" width="300" height="400">
+<img src="https://github.com/user-attachments/assets/ec395b1f-6acd-4923-8e4c-d67a4b48271d" alt="Rachel HR Interview Bot" width="300" height="360">
 
 ## Table of Contents
 1. [Introduction](#introduction)
