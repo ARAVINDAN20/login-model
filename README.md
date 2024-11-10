@@ -1,5 +1,5 @@
 # Rachel HR Bot - Advanced Interview Preparation Assistant
-![Rachel HR Bot Logo](https://github.com/user-attachments/assets/fc5e1b56-9794-440e-b6ef-286ef199a2e8)
+![Rachel HR Bot Logo](https://github.com/user-attachments/assets/ec395b1f-6acd-4923-8e4c-d67a4b48271d)
 
 ## Overview
 
