@@ -307,7 +307,8 @@ Rachel HR Interview Bot offers a wide range of features designed to enhance the 
 | (NeMo Curator/Reader) |     | (NeMo Guardrails)   |     |   (LlamaIndex/NeMo)   |
 +------------------------+     +----------------------+     +-------------------------+
 ```
-NVIDIA-LLAMAINDEX-CONTEST-ARCHITECTURE - Page 1
+![NVIDIA-LLAMAINDEX-CONTEST-ARCHITECTURE - Page 1](https://github.com/user-attachments/assets/f8c14d85-b0ce-44fa-9109-2ec54258f2cc)
+
 ## 📋 Requirements
 
 - Python 3.11+
