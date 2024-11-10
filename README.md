@@ -307,7 +307,7 @@ Rachel HR Interview Bot offers a wide range of features designed to enhance the 
 | (NeMo Curator/Reader) |     | (NeMo Guardrails)   |     |   (LlamaIndex/NeMo)   |
 +------------------------+     +----------------------+     +-------------------------+
 ```
-
+NVIDIA-LLAMAINDEX-CONTEST-ARCHITECTURE - Page 1
 ## 📋 Requirements
 
 - Python 3.11+
@@ -317,8 +317,6 @@ Rachel HR Interview Bot offers a wide range of features designed to enhance the 
 - 50GB+ disk space
 
 ## 🚀 Installation
-
-### Method 1: Direct Installation
 
 ### Method 1: Direct Installation
 
@@ -442,6 +440,7 @@ async def root():
 
 1. **Start the Application**
    ```bash
+   #to run this Demo project in Gradio and connect your API (https://build.nvidia.com/nvidia/llama-3_1-nemotron-70b-instruct)
    python Rachel.py
    ```
 
