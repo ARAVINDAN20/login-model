@@ -481,7 +481,7 @@ Rachel HR Interview Bot leverages a powerful combination of cutting-edge technol
 - **OpenAI API**: Integration with NVIDIA's API endpoint
 - **PyPDF2**: PDF processing for resume analysis
 
-```
+
 
 ## 4. Installation
 
