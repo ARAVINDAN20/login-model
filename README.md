@@ -674,10 +674,12 @@ More models can be found on the [Ollama library](https://ollama.com/library).
 
 To launch Rachel HR Interview Bot:
 
-1. Activate the virtual environment (if not already activated).
+1. Activate the virtual environment (if not already activated). to run this Demo project in Gradio and connect your API (https://build.nvidia.com/nvidia/llama-3_1-nemotron-70b-instruct)
 2. Run the main script:
    ```
-   python rachel_hr_bot.py
+   pip install nemo-guardrails tensorrt-llm nvidia-nim gradio spacy pytextrank scikit-learn openai
+   python -m spacy download en_core_web_sm
+   python Rachel.py
    ```
 3. Open the provided URL in your web browser to access the Gradio interface.
 
@@ -725,112 +727,7 @@ def analyze_domain(resume_text):
 
 This simple yet effective approach matches resume content against predefined domains, allowing for accurate specialization detection.
 
-### 6.3 Question Generation
-
-Rachel uses the Llama model to generate tailored interview questions:
-
-```python
-def generate_hr_questions(domain, job_role, job_description):
-    prompt = f"Generate 5 high-quality Technical HR interview questions for a candidate specializing in {domain} for the role of {job_role} with the following job description:\n{job_description}\nFocus on advanced concepts and industry best practices."
-    response = llm.create_chat_completion(
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=2048,
-        temperature=0.7,
-    )
-    questions = response['choices'][0]['message']['content'].strip().split('\n')
-    return [q.strip() for q in questions if q.strip()]
-```
-
-This function crafts a prompt using the candidate's domain, job role, and job description, then uses the Llama model to generate relevant technical questions.
-
-### 6.4 Answer Evaluation
-
-The `provide_feedback` function employs a sophisticated algorithm to evaluate user answers:
-
-```python
-def provide_feedback(question, user_answer, expected_answer):
-    user_answer_lower = user_answer.lower()
-    expected_answer_lower = expected_answer.lower()
-    question_lower = question.lower()
-
-    user_keywords = set(extract_keywords_textrank(user_answer_lower))
-    expected_keywords = set(extract_keywords_textrank(expected_answer_lower))
-    question_keywords = set(extract_keywords_textrank(question_lower))
-
-    relevant_keywords = question_keywords.intersection(expected_keywords)
-    user_relevant_keywords = user_keywords.intersection(relevant_keywords)
-    keyword_relevance = len(user_relevant_keywords) / len(relevant_keywords) if relevant_keywords else 0
-
-    tfidf_matrix = tfidf_vectorizer.fit_transform([user_answer_lower, expected_answer_lower])
-    cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
-
-    final_score = (0.6 * keyword_relevance + 0.4 * cosine_sim) * 10
-    rating = round(final_score)
-
-    # ... (rating-based feedback generation)
-
-    return rating, suggestions + [feedback_details]
-```
-
-This function combines keyword analysis and TF-IDF cosine similarity to provide a comprehensive evaluation of the user's answer, generating both a numerical rating and constructive feedback.
-
-### 6.5 GPU Acceleration
-
-Rachel utilizes CUDA for improved performance:
-
-```python
-assert torch.cuda.is_available(), "CUDA is not available. Please check your GPU setup."
-device = torch.device("cuda")
-torch.cuda.set_device(0)  # Use the first GPU
-print(f"Using GPU: {torch.cuda.get_device_name(0)}")
-
-# Initialize the Llama model with CUDA support
-llm = Llama.from_pretrained(
-    repo_id="hugging-quants/Llama-3.2-3B-Instruct-Q8_0-GGUF",
-    filename="llama-3.2-3b-instruct-q8_0.gguf",
-    n_gpu_layers=-1,  # Use all GPU layers
-    n_ctx=2048,  # Adjust context size as needed
-    device=device
-)
-```
-
-This setup ensures that the Llama model and other computations take full advantage of GPU acceleration, significantly improving processing speed.
-
-### 6.6 User Interface
-
-Rachel's user interface is built using Gradio, providing a clean and intuitive experience:
-
-```python
-with gr.Blocks(css=css) as demo:
-    gr.Markdown("# 🎓 KITS - Interview Prep Bot")
-    
-    with gr.Row():
-        with gr.Column(scale=1):
-            with gr.Accordion("Resume Analysis", open=False):
-                file_input = gr.File(label="📄 Upload your resume (PDF)", file_types=['pdf'])
-                upload_button = gr.Button("📤 Upload and Analyze Resume")
-                upload_status = gr.Textbox(label="Status")
-                detected_domain = gr.Textbox(label="🎯 Detected Specialization")
-                job_role_dropdown = gr.Dropdown(label="🔍 Select Job Role", choices=[])
-                job_description_input = gr.Textbox(label="📋 Enter Job Description (max 200 words)", max_lines=10)
-            
-            generate_button = gr.Button("🔄 Generate Questions", elem_classes=["generate-btn"])
-            feedback_button = gr.Button("📝 Provide Feedback", elem_classes=["feedback-btn"])
-
-        with gr.Column(scale=2):
-            chatbot = gr.Chatbot(label="💬 Chat")
-            chat_input = gr.Textbox(label="Type your answer", placeholder="Type here or click 'Skip' to proceed")
-            with gr.Row():
-                chat_button = gr.Button("📨 Send")
-                skip_button = gr.Button("🔄 Skip")
-                generate_answer_button = gr.Button("💡 Generate Answer")
-
-    # ... (state variables and event handlers)
-```
-
-This code structure creates a responsive layout with collapsible sections, stylized buttons, and a central chat interface, enhancing user experience and accessibility.
-
-## 7. Contributing
+## 7. 🤝 Contributing
 
 We welcome contributions to Rachel HR Interview Bot! If you'd like to contribute, please follow these steps:
 
@@ -843,7 +740,7 @@ We welcome contributions to Rachel HR Interview Bot! If you'd like to contribute
 
 Please ensure your code adheres to the project's coding standards and include appropriate tests for new features.
 
-## 8. License
+## 8. 📄 License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
@@ -851,8 +748,11 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 - Aravindan M (URK22AI1026) for their innovative development of Rachel HR Interview Bot.
 - Karunya Institute of Technology and Sciences for supporting this project.
+- NVIDIA for providing advanced AI technologies
+- OpenWebUI community for the interface framework
 - The open-source community for providing the foundational libraries and models used in this project.
 
 ---
+Built with ❤️ by ARAVINDAN for the NVIDIA and LlamaIndex Developer Contest
 
 Rachel HR Interview Bot represents a significant advancement in AI-assisted interview preparation. By combining cutting-edge NLP techniques, GPU acceleration, and a user-friendly interface, Rachel offers a comprehensive solution for candidates looking to excel in technical HR interviews. We hope this tool proves invaluable in your career journey!
